@@ -2,31 +2,29 @@ import React, {useState} from 'react'
 import loginImage from '../../assets/images/male.svg'
 import {Link} from 'react-router-dom'
 //import axios from 'axios'
+//import AuthService from '../../services/authService'
+import {login} from '../../store/actions/auth'
+import {useDispatch} from 'react-redux'
 
 import './Auth.scss'
-import AuthService from '../../services/authService'
 
-const Login = ()=>{
+const Login = ({history})=>{
+    const dispatch = useDispatch()
+
     const [email,setEmail] = useState('john.doe@gmail.com')
     const [password,setPassword] = useState('secret')
 
 
     const submitForm = (e) => {
         e.preventDefault()
-
-        AuthService.login({email, password})
+        
+        dispatch(login({email, password}, history))
+        /* AuthService.login({email, password})
             .then(res =>{
 
             })
             .catch(error =>{
 
-            })
-        /* axios.post('http://127.0.0.1:8081/login',{email, password})
-            .then(res=>{
-                console.log(res)
-            })
-            .catch(error =>{
-                console.log(error)
             }) */
     }
 
