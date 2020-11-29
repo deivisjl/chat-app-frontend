@@ -1,3 +1,4 @@
+import api from './api'
 import API from './api'
 
 const AuthService = {
@@ -25,7 +26,7 @@ const AuthService = {
     },
 
     logout: () =>{
-
+        API.defaults.headers['Authorization'] = ''
     }
 }
 
