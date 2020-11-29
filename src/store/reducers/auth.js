@@ -1,4 +1,4 @@
-import {LOGIN, REGISTER, UPDATE_PROFILE,LOGOUT} from '../actions/auth'
+import {LOGIN, REGISTER, UPDATE_PROFILE,LOGOUT} from '../types/index'
 
 const initialState = {
     user:JSON.parse(localStorage.getItem('user')),
