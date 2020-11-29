@@ -1,8 +1,10 @@
-import React, {useState} from 'react'
+import React, {useState, Fragment} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import './Navbar.scss'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {logout} from '../../../../store/actions/auth'
+
+import Modal from '../../../Modal/Modal'
 
 const Navbar = () =>{
 
@@ -10,6 +12,7 @@ const Navbar = () =>{
     const user = useSelector(state => state.authReducer.user)
 
     const [showProfileOptions, setShowProfileOptions] = useState(false)
+    const [showProfileModal, setShowProfileModal] = useState(false)
 
     return (
         <div id="navbar" className='card-shadow'>
@@ -21,9 +24,23 @@ const Navbar = () =>{
                 {
                     showProfileOptions && 
                     <div id='profile-options'>
-                        <p>Update profile</p>
+                        <p onClick={()=> setShowProfileModal(true)}>Update profile</p>
                         <p onClick={()=> dispatch(logout())}>Logout</p>
                     </div>
+                }
+                {
+                    showProfileModal && 
+                    <Modal click={() => setShowProfileModal(false)}>
+                        <Fragment key='header'>
+                            Modal Header
+                        </Fragment>
+                        <Fragment key='body'>
+                            Modal Body
+                        </Fragment>
+                        <Fragment key='footer'>
+                            Modal Footer
+                        </Fragment>
+                    </Modal>
                 }
             </div>
         </div>
