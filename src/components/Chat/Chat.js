@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react'
+import useSocket from './hooks/socketConnect'
 import {useSelector, useDispatch} from 'react-redux'
 import Navbar from './components/Navbar/Navbar'
 import FriendList from './components/FriendList/FriendList'
@@ -12,6 +13,8 @@ const Chat = ()=>{
     const dispatch = useDispatch()
 
     const user = useSelector(state => state.authReducer.user)
+
+    useSocket(user, dispatch)
 
     useEffect(()=>{
 
