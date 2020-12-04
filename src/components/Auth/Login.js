@@ -11,7 +11,7 @@ import './Auth.scss'
 const Login = ({history})=>{
     const dispatch = useDispatch()
 
-    const [email,setEmail] = useState('john.doe@gmail.com')
+    const [email,setEmail] = useState('sam.smith@gmail.com')
     const [password,setPassword] = useState('secret')
 
 

@@ -10,7 +10,7 @@ const Messenger = () =>{
     const chat = useSelector(state => state.chatReducer.currentChat)
 
     const activeChat = () =>{
-        return Object.keys(chat).legnth > 0
+        return Object.keys(chat).length > 0
     }
 
     return(

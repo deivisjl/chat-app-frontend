@@ -1,3 +1,5 @@
+@import '../../../../assets/scss/_variables';
+
 .friend-list {
     display: flex;
     justify-content: space-between;
@@ -30,5 +32,25 @@
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+
+    .offline::before{
+        font: normal normal normal 14px/1 FontAwesome;
+        font-size: inherit;
+        text-rendering: auto;        
+        content: "\f111"; 
+        background-color: $danger;
+        border-radius: 100%;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    .online::before{
+        font: normal normal normal 14px/1 FontAwesome;
+        font-size: inherit;
+        text-rendering: auto;        
+        content: "\f111"; 
+        background-color: $success;
+        border-radius: 100%;
+        -webkit-font-smoothing: antialiased;
     }
 }
