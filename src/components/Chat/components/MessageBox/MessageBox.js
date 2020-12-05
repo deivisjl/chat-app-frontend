@@ -4,7 +4,6 @@ import Message from '../Message/Message'
 import {paginateMessages} from '../../../../store/actions/chat'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './MessageBox.scss'
-import { cleanup } from '@testing-library/react'
 
 const MessageBox = ({chat}) =>{
 
@@ -16,14 +15,6 @@ const MessageBox = ({chat}) =>{
     const [loading, setLoading] = useState(false)
     const [scrollUp, setScrollUp] = useState(0)
     const msgBox = useRef()
-
-    useEffect(()=>{
-        if(!senderTyping.typing){
-            setTimeout(()=>{
-                scrollManual(msgBox.current.scrollHeight)
-            },100)
-        }
-    },[scrollBottom])
 
     const scrollManual = (value) =>{
         msgBox.current.scrollTop = value
@@ -51,18 +42,26 @@ const MessageBox = ({chat}) =>{
     }
 
     useEffect(() =>{
+        setTimeout(() =>{
+            scrollManual(Math.ceil(msgBox.current.scrollHeight * 0.10))
+        }, 100)
+    }, [scrollUp]) 
+
+    useEffect(() =>{
         if(senderTyping.typing && msgBox.current.scrollTop > msgBox.current.scrollHeight * 0.30){
             setTimeout(() =>{
-                scrollManual(Math.ceil(msgBox.current.scrollHeight * 0.10))
+                scrollManual(msgBox.current.scrollHeight)
             }, 100)
         }
     },[senderTyping])
 
-    useEffect(() =>{
-        setTimeout(() =>{
-            scrollManual(Math.ceil(msgBox.current.scrollHeight * 0.10))
-        }, 100)
-    }, [scrollUp])
+    useEffect(()=>{
+        if(!senderTyping.typing){
+            setTimeout(()=>{
+                scrollManual(msgBox.current.scrollHeight)
+            },100)
+        }
+    },[scrollBottom]) 
 
     return(
         <div onScroll={handleInfiniteScroll} id='msg-box' ref={msgBox}>
