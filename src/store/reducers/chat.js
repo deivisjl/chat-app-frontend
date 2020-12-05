@@ -1,4 +1,4 @@
-import {FETCH_CHATS, SET_CURRENT_CHAT, FRIENDS_ONLINE, FRIEND_ONLINE, FRIEND_OFFLINE, SET_SOCKET, RECEIVED_MESSAGE, SENDER_TYPING} from '../actions/chat'
+import {FETCH_CHATS, SET_CURRENT_CHAT, FRIENDS_ONLINE, FRIEND_ONLINE, FRIEND_OFFLINE, SET_SOCKET, RECEIVED_MESSAGE, SENDER_TYPING, PAGINATE_MESSAGES} from '../actions/chat'
 
 const initialState = {
     chats:[],
@@ -179,6 +179,10 @@ const chatReducer = (state = initialState, action) =>{
                     ...state,
                     senderTyping:payload,
                 }
+            }
+
+            case PAGINATE_MESSAGES:{
+                
             }
         default: {
             return state
