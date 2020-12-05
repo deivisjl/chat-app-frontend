@@ -26,7 +26,7 @@ const MessageInput = ({chat}) =>{
 
         const msg = {
             type:imageUpload ? 'image' : 'text',
-            fromUserId: user,
+            fromUser: user,
             toUserId: chat.Users.map(user => user.id),
             chatId: chat.id,
             message: imageUpload ? image : message
@@ -34,7 +34,6 @@ const MessageInput = ({chat}) =>{
 
         setMessage('')
         setImage('')
-
         //send message with socket
         socket.emit('message', msg)
     }
