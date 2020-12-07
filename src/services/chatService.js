@@ -51,7 +51,7 @@ const ChatService = {
         })
     },
     createChat: (partnerId) =>{
-        return API.get('/chats/create', {partnerId})
+        return API.post('/chats/create', {partnerId})
         .then(({data})=>{
             return data
         })
