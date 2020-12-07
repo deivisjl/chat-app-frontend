@@ -1,6 +1,6 @@
 import {useEffect} from 'react'
 import SocketIOClient from 'socket.io-client'
-import {fetchChats, onlineFriends, onlineFriend, offlineFriend, setSocket, receivedMessage, senderTyping, createChat} from '../../../store/actions/chat'
+import {fetchChats, onlineFriends, onlineFriend, offlineFriend, setSocket, receivedMessage, senderTyping, createChat, addUserToGroup} from '../../../store/actions/chat'
 
 function useSocket (user, dispatch){
 
@@ -41,6 +41,10 @@ function useSocket (user, dispatch){
                 socket.on('new-chat',(chat) =>{
                     dispatch(createChat(chat))
                 })
+
+                socket.on('added-user-to-group',(group =>{
+                    dispatch(addUserToGroup(group))
+                }))
             })
             .catch(err => console.log(err))
 
